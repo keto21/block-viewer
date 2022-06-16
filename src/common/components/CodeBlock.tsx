@@ -17,18 +17,23 @@ const CodeBlock = ({ baseOrAscii = 10, blockData }: CodeBlockProps) => {
   return (
     <Grid item xs={12} textAlign={"left"}>
       <code style={{ whiteSpace: "pre-wrap" }}>
-        {blockData.map((value: number, idx: number) => (
-          <CodeSpan
-            value={convertToBaseOrAscii(
-              value,
-              baseOrAscii,
-              baseOrAscii === "ascii" ? 0 : 2,
-              3
-            )}
-            idx={idx}
-            activeIndex={activeIndex}
-          />
-        ))}
+        {blockData.map((byteValue: number, idx: number) => {
+          const { value, space } = convertToBaseOrAscii(
+            byteValue,
+            baseOrAscii,
+            baseOrAscii === "ascii" ? 0 : 2,
+            3
+          );
+          return (
+            <CodeSpan
+              key={baseOrAscii + "-" + idx}
+              value={value}
+              space={space}
+              idx={idx}
+              activeIndex={activeIndex}
+            />
+          );
+        })}
       </code>
     </Grid>
   );

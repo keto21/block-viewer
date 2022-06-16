@@ -1,4 +1,4 @@
-import { BaseOrAscii } from "./types";
+import { BaseOrAscii, ByteOutputObject } from "./types";
 
 // Can't be used. See comment in charCodeHelper.
 const charCodeTable: Record<number, string> = {
@@ -77,11 +77,16 @@ const convertToBaseOrAscii = (
   baseOrAscii: BaseOrAscii,
   paddingLeft: number,
   paddingRight: number
-): string => {
+): ByteOutputObject => {
   let convertedValue = convertToChar(value);
   if (baseOrAscii !== "ascii") convertedValue = value.toString(baseOrAscii);
 
-  return rpad(lpad(convertedValue, paddingLeft, "0"), paddingRight, " ");
+  let paddedValue = lpad(convertedValue, paddingLeft);
+
+  return {
+    value: paddedValue,
+    space: createFillerString(paddedValue.length, paddingRight, " "),
+  };
 };
 
 export { convertToBaseOrAscii };

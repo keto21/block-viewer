@@ -1,3 +1,8 @@
 type BaseOrAscii = 10 | 16 | "ascii";
 
-export type { BaseOrAscii };
+interface ByteOutputObject {
+  value: string;
+  space: string;
+}
+
+export type { BaseOrAscii, ByteOutputObject };

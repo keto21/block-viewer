@@ -4,24 +4,28 @@ import { setActiveIndex } from "../../state/fileData/fileDataReducer";
 
 interface CodeSpanProps {
   value: string;
+  space: string;
   idx: number;
   activeIndex?: number;
 }
 
 const CodeSpan = React.memo(
-  ({ value, idx, activeIndex }: CodeSpanProps) => {
+  ({ value, space, idx, activeIndex }: CodeSpanProps) => {
     const dispatch = useAppDispatch();
 
     return (
-      <span
-        onMouseOver={() => {
-          dispatch(setActiveIndex(idx));
-        }}
-        style={{
-          backgroundColor: activeIndex === idx ? "orange" : "white",
-        }}
-      >
-        {value}
+      <span>
+        <span
+          onMouseOver={() => {
+            dispatch(setActiveIndex(idx));
+          }}
+          style={{
+            backgroundColor: activeIndex === idx ? "orange" : "white",
+          }}
+        >
+          {value}
+        </span>
+        <span>{space}</span>
       </span>
     );
   },
