@@ -29,7 +29,6 @@ const CenteredGrid = ({
       direction={direction ?? "column"}
       alignItems={alignItems ?? "center"}
       alignContent="center"
-      xs={12}
     >
       {children}
     </Grid>
