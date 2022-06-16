@@ -48,9 +48,9 @@ const charCodeHelper = (charCode: number) => {
 
 const convertToChar = (charCode: number) => {
   if (
-    charCode < 33 ||
-    charCode === 127 ||
-    (charCode > 127 && charCode <= 160)
+    charCode < 33 || // control characters
+    charCode === 173 || // soft hyphen
+    (charCode >= 127 && charCode <= 160) // special characters
   ) {
     return charCodeHelper(charCode);
   } else {
